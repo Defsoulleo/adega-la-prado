@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adega Lá Prado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --portal: #39ff14;
+      --portal2: #00e676;
+      --portal-dim: rgba(57,255,20,0.15);
+      --portal-glow: rgba(57,255,20,0.4);
+      --cyan: #00e5ff;
+      --yellow: #ffd600;
+      --purple: #7c4dff;
+      --space: #020818;
+      --space2: #060d24;
+      --space3: #0a1535;
+      --text: #e8f5e9;
+      --muted: #78909c;
+      --border: rgba(57,255,20,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--space);
+      color: var(--text);
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── STARS ── */
+    .stars {
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .stars::before, .stars::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 50%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 30%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 80%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(2px 2px at 25% 40%, rgba(200,220,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 92% 65%, rgba(200,200,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 37% 25%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(2px 2px at 55% 75%, rgba(200,255,220,0.5) 0%, transparent 100%);
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+    .stars::after {
+      background-position: 40px 80px;
+      animation-delay: -3s;
+      opacity: 0.6;
+    }
+    @keyframes twinkle {
+      0%   { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+
+    /* ── PORTAL BG GLOW ── */
+    .portal-bg {
+      position: fixed;
+      top: -20vh; left: 50%;
+      transform: translateX(-50%);
+      width: 60vw; height: 60vw;
+      max-width: 700px; max-height: 700px;
+      background: radial-gradient(ellipse, rgba(57,255,20,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: portalPulse 5s ease-in-out infinite;
+    }
+    @keyframes portalPulse {
+      0%,100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+      50%      { opacity: 1;   transform: translateX(-50%) scale(1.08); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    .logo-ring {
+      position: relative;
+      width: 170px; height: 170px;
+      margin-bottom: 2rem;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    .logo-ring::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--portal);
+      border-right-color: var(--portal);
+      border-left-color: var(--portal);
+      animation: spin 3s linear infinite;
+      box-shadow: 0 0 20px var(--portal-glow), inset 0 0 20px var(--portal-dim);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .logo-ring::after {
+      content: '';
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-top-color: rgba(57,255,20,0.3);
+      border-bottom-color: rgba(57,255,20,0.3);
+      animation: spin 6s linear infinite reverse;
+    }
+
+    .logo-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--portal);
+      box-shadow:
+        0 0 30px var(--portal-glow),
+        0 0 60px rgba(57,255,20,0.2),
+        inset 0 0 30px rgba(57,255,20,0.1);
+    }
+
+    .logo-placeholder {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--space3);
+      border: 3px solid var(--portal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      box-shadow: 0 0 30px var(--portal-glow);
+    }
+
+    .hero-name {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      color: var(--portal);
+      text-shadow:
+        0 0 20px var(--portal-glow),
+        0 0 60px rgba(57,255,20,0.3),
+        0 0 100px rgba(57,255,20,0.15);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-name span {
+      display: block;
+      font-size: 0.45em;
+      color: var(--cyan);
+      text-shadow: 0 0 20px rgba(0,229,255,0.5);
+      letter-spacing: 0.2em;
+      margin-top: 0.3em;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .portal-badge {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid var(--portal);
+      border-radius: 4px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--portal);
+      box-shadow: 0 0 12px var(--portal-dim), inset 0 0 12px var(--portal-dim);
+      margin-bottom: 0.5rem;
+    }
+
+    .horarios {
+      background: rgba(6,13,36,0.8);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 2;
+      max-width: 310px;
+      margin: 0 auto 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .horarios::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--portal), transparent);
+    }
+    .horarios strong {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--portal);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.25s;
+      cursor: pointer; border: none;
+    }
+    .btn-portal {
+      background: var(--portal);
+      color: #020818;
+      box-shadow: 0 0 20px var(--portal-glow);
+    }
+    .btn-portal:hover { box-shadow: 0 0 40px var(--portal-glow); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      box-shadow: 0 0 10px rgba(0,229,255,0.2);
+    }
+    .btn-outline:hover { background: rgba(0,229,255,0.08); box-shadow: 0 0 24px rgba(0,229,255,0.4); transform: translateY(-2px); }
+
+    /* ── NAV ── */
+    .nav-sticky {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(2,8,24,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-sticky::after {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--portal), transparent);
+      opacity: 0.4;
+    }
+
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      max-width: 900px;
+      margin: 0 auto;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .nav-tab {
+      flex: 0 0 auto;
+      padding: 1rem 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--portal); }
+    .nav-tab.active {
+      color: var(--portal);
+      border-bottom-color: var(--portal);
+      text-shadow: 0 0 10px var(--portal-glow);
+    }
+
+    /* ── SECTIONS ── */
+    .menu-section {
+      position: relative; z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3.5rem 1.2rem 1.5rem;
+    }
+
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+    .section-icon { font-size: 1.6rem; }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.6rem, 5vw, 2.5rem);
+      color: var(--portal);
+      text-shadow: 0 0 20px rgba(57,255,20,0.4);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--portal), transparent);
+      opacity: 0.4;
+    }
+
+    .subsection { margin-bottom: 2.5rem; }
+    .subsection-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .subsection-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(0,229,255,0.2);
+    }
+
+    .items-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    @media (max-width: 500px) { .items-grid { grid-template-columns: 1fr; } }
+
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.8rem 1rem;
+      background: var(--space2);
+      border: 1px solid rgba(57,255,20,0.08);
+      border-radius: 6px;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--portal);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .item:hover { border-color: rgba(57,255,20,0.3); background: rgba(57,255,20,0.05); transform: translateX(3px); }
+    .item:hover::before { opacity: 1; }
+    .item.highlight { border-color: rgba(57,255,20,0.25); background: rgba(57,255,20,0.06); }
+    .item.highlight::before { opacity: 0.6; }
+
+    .item-name { font-size: 0.9rem; font-weight: 600; flex: 1; color: var(--text); }
+    .item-note { font-size: 0.72rem; color: var(--muted); display: block; margin-top: 0.15rem; font-weight: 400; }
+
+    .item-price {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--portal);
+      text-shadow: 0 0 8px rgba(57,255,20,0.5);
+      white-space: nowrap;
+      text-align: right;
+    }
+    .item-price small { display: block; font-size: 0.65rem; color: var(--cyan); font-weight: 400; text-shadow: none; }
+
+    /* ── AÇAÍ ── */
+    .acai-sizes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-bottom: 1.5rem; }
+    @media (max-width: 500px) { .acai-sizes { grid-template-columns: repeat(2, 1fr); } }
+
+    .acai-size {
+      background: var(--space2);
+      border: 1px solid rgba(57,255,20,0.15);
+      border-radius: 8px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      transition: all 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .acai-size::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--portal), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .acai-size:hover::after { opacity: 1; }
+    .acai-vol { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--portal); text-shadow: 0 0 12px rgba(57,255,20,0.5); }
+    .acai-price { font-weight: 700; font-size: 1rem; color: var(--text); margin-top: 0.3rem; }
+
+    .add-group { margin-bottom: 1.2rem; }
+    .add-title { font-family: 'Orbitron', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; color: var(--cyan); text-transform: uppercase; margin-bottom: 0.6rem; }
+    .add-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip {
+      padding: 0.35rem 0.85rem;
+      background: rgba(57,255,20,0.06);
+      border: 1px solid rgba(57,255,20,0.2);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+    .chip:hover { background: rgba(57,255,20,0.15); color: var(--portal); }
+
+    .portal-divider {
+      max-width: 900px;
+      margin: 1rem auto;
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0 1.2rem;
+    }
+    .portal-divider::before, .portal-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .portal-divider span { width: 8px; height: 8px; border-radius: 50%; background: var(--portal); box-shadow: 0 0 12px var(--portal-glow); display: block; }
+
+    footer {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 3rem 1rem 2.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 2rem;
+    }
+
+    .insta-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--cyan);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 10px rgba(0,229,255,0.4);
+    }
+    .insta-link:hover { text-shadow: 0 0 20px rgba(0,229,255,0.8); }
+
+    .anchor { scroll-margin-top: 60px; }
+  </style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="portal-bg"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-ring">
+    <img src="logo.png" alt="Adega Lá Prado"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <div class="logo-placeholder" style="display:none">🍺</div>
+  </div>
+
+  <h1 class="hero-name">
+    LÁ PRADO
+    <span>Adega &amp; Conveniência</span>
+  </h1>
+  <p class="hero-tagline">Bebidas · Petiscos · Açaí</p>
+
+  <div class="portal-badge">⏰ Horários</div>
+  <div class="horarios">
+    <strong>Funcionamento</strong>
+    Seg – Qui &nbsp;•&nbsp; 12h30 às 00h30<br>
+    Sex – Sáb &nbsp;•&nbsp; 12h00 às 02h00<br>
+    Domingo &nbsp;•&nbsp; 12h00 às 23h00
+  </div>
+
+  <div class="hero-btns">
+    <a href="#cardapio" class="btn btn-portal">Ver Cardápio</a>
+    <a href="https://instagram.com/adegalaprado" target="_blank" rel="noopener" class="btn btn-outline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav-sticky">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="goTo('cervejas',this)">🍺 Cervejas</button>
+    <button class="nav-tab" onclick="goTo('gin',this)">🍸 Gin</button>
+    <button class="nav-tab" onclick="goTo('whisky',this)">🥃 Whisky</button>
+    <button class="nav-tab" onclick="goTo('vodka',this)">🍹 Vodka</button>
+    <button class="nav-tab" onclick="goTo('especiais',this)">✨ Especiais</button>
+    <button class="nav-tab" onclick="goTo('caipirinhas',this)">🍋 Caipirinha</button>
+    <button class="nav-tab" onclick="goTo('acai',this)">🫐 Açaí</button>
+    <button class="nav-tab" onclick="goTo('petiscos',this)">🍫 Petiscos</button>
+  </div>
+</nav>
+
+<main id="cardapio">
+
+  <!-- CERVEJAS -->
+  <section class="menu-section anchor" id="cervejas">
+    <div class="section-header">
+      <span class="section-icon">🍺</span>
+      <h2 class="section-title">Cervejas</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Latas</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Skol Lata</div><div class="item-price">R$ 4,50</div></div>
+        <div class="item"><div class="item-name">Itaipava Lata</div><div class="item-price">R$ 4,00</div></div>
+        <div class="item"><div class="item-name">Original Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Brahma Duplo Lata</div><div class="item-price">R$ 5,00</div></div>
+        <div class="item"><div class="item-name">Brahma Chop Lata</div><div class="item-price">R$ 4,50</div></div>
+        <div class="item"><div class="item-name">Heineken Lata</div><div class="item-price">R$ 6,50</div></div>
+        <div class="item"><div class="item-name">Heineken Long Neck</div><div class="item-price">R$ 7,50</div></div>
+        <div class="item"><div class="item-name">Budweiser Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Spaten Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Spaten Long Neck</div><div class="item-price">R$ 6,50</div></div>
+        <div class="item"><div class="item-name">Amstel Lata</div><div class="item-price">R$ 5,00</div></div>
+        <div class="item"><div class="item-name">Império Lata</div><div class="item-price">R$ 4,50</div></div>
+        <div class="item"><div class="item-name">Império Ultra</div><div class="item-price">R$ 5,00</div></div>
+        <div class="item"><div class="item-name">Eisenbahn Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item highlight" style="grid-column:1/-1">
+          <div class="item-name">Xeque Mate</div>
+          <div class="item-price">R$ 10,00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Long Neck / Garrafa</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Skol 300ml<span class="item-note">Engradado R$ 3,50 · Caixa R$ 84</span></div><div class="item-price">R$ 4,00</div></div>
+        <div class="item"><div class="item-name">Itaipava 269ml</div><div class="item-price">R$ 3,25</div></div>
+        <div class="item"><div class="item-name">Original 300ml</div><div class="item-price">R$ 4,75</div></div>
+        <div class="item"><div class="item-name">Brahma Duplo 300ml</div><div class="item-price">R$ 4,75</div></div>
+        <div class="item"><div class="item-name">Brahma Chop 300ml<span class="item-note">Engradado R$ 3,50</span></div><div class="item-price">R$ 4,00</div></div>
+        <div class="item"><div class="item-name">Budweiser 269ml</div><div class="item-price">R$ 4,50</div></div>
+        <div class="item"><div class="item-name">Budweiser 300ml</div><div class="item-price">R$ 4,75</div></div>
+        <div class="item"><div class="item-name">Amstel 269ml</div><div class="item-price">R$ 4,00</div></div>
+        <div class="item"><div class="item-name">Império 269ml</div><div class="item-price">R$ 3,50</div></div>
+        <div class="item"><div class="item-name">Eisenbahn 269ml</div><div class="item-price">R$ 4,25</div></div>
+        <div class="item"><div class="item-name">Proibida</div><div class="item-price">R$ 3,25</div></div>
+        <div class="item"><div class="item-name">Lokal</div><div class="item-price">R$ 3,25</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- GIN -->
+  <section class="menu-section anchor" id="gin">
+    <div class="section-header">
+      <span class="section-icon">🍸</span>
+      <h2 class="section-title">Copão de Gin</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item highlight"><div class="item-name">Gin Opera<span class="item-note">Com fruta</span></div><div class="item-price">R$ 15<small>3 por R$ 40</small></div></div>
+      <div class="item highlight"><div class="item-name">Gin Intencion<span class="item-note">Com fruta</span></div><div class="item-price">R$ 15<small>3 por R$ 40</small></div></div>
+      <div class="item highlight"><div class="item-name">Gin QN<span class="item-note">Com fruta</span></div><div class="item-price">R$ 15<small>3 por R$ 40</small></div></div>
+      <div class="item highlight"><div class="item-name">Gin Rock's<span class="item-note">Com fruta</span></div><div class="item-price">R$ 17</div></div>
+      <div class="item highlight"><div class="item-name">Gin Master Gold</div><div class="item-price">R$ 12<small>3 por R$ 30</small></div></div>
+      <div class="item highlight"><div class="item-name">Gin Tanqueray<span class="item-note">Com fruta</span></div><div class="item-price">R$ 20</div></div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- WHISKY -->
+  <section class="menu-section anchor" id="whisky">
+    <div class="section-header">
+      <span class="section-icon">🥃</span>
+      <h2 class="section-title">Whisky</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item"><div class="item-name">Master Black / QN</div><div class="item-price">R$ 12<small>3 por R$ 30</small></div></div>
+      <div class="item"><div class="item-name">Passaporte</div><div class="item-price">R$ 15</div></div>
+      <div class="item"><div class="item-name">Passaporte Mel / Maçã Verde</div><div class="item-price">R$ 18<small>2 por R$ 35</small></div></div>
+      <div class="item"><div class="item-name">Cavalo</div><div class="item-price">R$ 20</div></div>
+      <div class="item"><div class="item-name">Ballantine's</div><div class="item-price">R$ 20</div></div>
+      <div class="item highlight" style="grid-column:1/-1">
+        <div class="item-name">Jack Daniel's<span class="item-note">Com Monster: R$ 36</span></div>
+        <div class="item-price">R$ 26</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- VODKA -->
+  <section class="menu-section anchor" id="vodka">
+    <div class="section-header">
+      <span class="section-icon">🍹</span>
+      <h2 class="section-title">Vodka</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item"><div class="item-name">Voduska</div><div class="item-price">R$ 13</div></div>
+      <div class="item"><div class="item-name">Askov</div><div class="item-price">R$ 13</div></div>
+      <div class="item"><div class="item-name">Smirnoff</div><div class="item-price">R$ 15</div></div>
+      <div class="item highlight"><div class="item-name">Absolut</div><div class="item-price">R$ 20</div></div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- ESPECIAIS -->
+  <section class="menu-section anchor" id="especiais">
+    <div class="section-header">
+      <span class="section-icon">✨</span>
+      <h2 class="section-title">Especiais</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item highlight"><div class="item-name">Licor com Sorvete</div><div class="item-price">R$ 25</div></div>
+      <div class="item highlight"><div class="item-name">Gin com Leite Moça e Sorvete</div><div class="item-price">R$ 25</div></div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- CAIPIRINHAS -->
+  <section class="menu-section anchor" id="caipirinhas">
+    <div class="section-header">
+      <span class="section-icon">🍋</span>
+      <h2 class="section-title">Caipirinhas 500ml</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item"><div class="item-name">Limão</div><div class="item-price">R$ 10</div></div>
+      <div class="item"><div class="item-name">Laranja</div><div class="item-price">R$ 10</div></div>
+      <div class="item"><div class="item-name">Morango</div><div class="item-price">R$ 12</div></div>
+      <div class="item"><div class="item-name">Maracujá</div><div class="item-price">R$ 12</div></div>
+      <div class="item highlight" style="grid-column:1/-1">
+        <div class="item-name">Caipirinha Cremosa ✨</div>
+        <div class="item-price">R$ 15</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- AÇAÍ -->
+  <section class="menu-section anchor" id="acai">
+    <div class="section-header">
+      <span class="section-icon">🫐</span>
+      <h2 class="section-title">Açaí</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="acai-sizes">
+      <div class="acai-size"><div class="acai-vol">200ml</div><div class="acai-price">R$ 7,00</div></div>
+      <div class="acai-size"><div class="acai-vol">300ml</div><div class="acai-price">R$ 8,50</div></div>
+      <div class="acai-size"><div class="acai-vol">500ml</div><div class="acai-price">R$ 15,00</div></div>
+      <div class="acai-size"><div class="acai-vol">770ml</div><div class="acai-price">R$ 17,50</div></div>
+    </div>
+    <div class="add-group">
+      <div class="add-title">+ Adicionais — R$ 2,50 cada</div>
+      <div class="add-chips">
+        <span class="chip">Leite em Pó</span>
+        <span class="chip">Paçoca</span>
+        <span class="chip">Confete</span>
+        <span class="chip">Chocoball</span>
+        <span class="chip">Leite Condensado</span>
+        <span class="chip">Bis</span>
+      </div>
+    </div>
+    <div class="add-group">
+      <div class="add-title">+ Adicionais — R$ 3,00 cada</div>
+      <div class="add-chips">
+        <span class="chip">Morango</span>
+        <span class="chip">Banana</span>
+        <span class="chip">Kit Kat</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- PETISCOS -->
+  <section class="menu-section anchor" id="petiscos">
+    <div class="section-header">
+      <span class="section-icon">🍫</span>
+      <h2 class="section-title">Petiscos &amp; Doces</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item"><div class="item-name">Bolacha Recheada</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Lobitos</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Gurizitos Bacon</div><div class="item-price">R$ 3,50</div></div>
+      <div class="item"><div class="item-name">Freegells</div><div class="item-price">R$ 2,50</div></div>
+      <div class="item"><div class="item-name">Freegells Gum</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Mentos</div><div class="item-price">R$ 3,50</div></div>
+      <div class="item"><div class="item-name">Sonho de Valsa</div><div class="item-price">R$ 2,50</div></div>
+      <div class="item"><div class="item-name">Ouro Branco</div><div class="item-price">R$ 2,50</div></div>
+      <div class="item"><div class="item-name">Doces variados</div><div class="item-price">R$ 2 – 3</div></div>
+      <div class="item"><div class="item-name">Bis</div><div class="item-price">R$ 7,50</div></div>
+      <div class="item highlight" style="grid-column:1/-1">
+        <div class="item-name">Chocolate Barra</div>
+        <div class="item-price">R$ 8,00</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <!-- Troque pelo link real do Instagram -->
+  <a href="https://instagram.com/adegalaprado" target="_blank" rel="noopener" class="insta-link">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    @adegalaprado
+  </a>
+  <p>© 2025 Adega Lá Prado — Todos os direitos reservados</p>
+  <p style="margin-top:0.4rem;font-size:0.7rem;color:#455a64">Preços sujeitos a alteração sem aviso prévio</p>
+</footer>
+
+<script>
+  function goTo(id, el) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  const sections = ['cervejas','gin','whisky','vodka','especiais','caipirinhas','acai','petiscos'];
+  const tabs = document.querySelectorAll('.nav-tab');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const i = sections.indexOf(e.target.id);
+        if (i >= 0) { tabs.forEach(t => t.classList.remove('active')); tabs[i].classList.add('active'); }
+      }
+    });
+  }, { threshold: 0.25 });
+  sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+</script>
+</body>
+</html>
