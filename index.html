@@ -479,9 +479,105 @@
     .insta-link:hover { text-shadow: 0 0 20px rgba(0,229,255,0.8); }
 
     .anchor { scroll-margin-top: 60px; }
+
+  /* ── PORTAL FLUTUANTE ── */
+  .float-portal {
+    position: fixed;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px; height: 160px;
+    z-index: 10;
+    pointer-events: none;
+    animation: portalFloat 6s ease-in-out infinite;
+  }
+  @keyframes portalFloat {
+    0%,100% { transform: translateY(-50%) translateX(0); }
+    50%      { transform: translateY(-55%) translateX(-8px); }
+  }
+
+  /* ── FRASE RICK ── */
+  #rick-quote {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(2,8,24,0.92);
+    border: 1px solid var(--portal);
+    border-radius: 8px;
+    padding: 0.75rem 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--portal);
+    text-align: center;
+    max-width: 320px;
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.6s, transform 0.6s;
+    box-shadow: 0 0 20px rgba(57,255,20,0.2);
+    pointer-events: none;
+  }
+  #rick-quote.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  #rick-quote::before {
+    content: '🧪 ';
+  }
+
+  /* ── PARTÍCULAS PORTAL ── */
+  .portal-particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: particleDrift linear infinite;
+    opacity: 0;
+  }
+  @keyframes particleDrift {
+    0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(1.2); }
+  }
+
   </style>
 </head>
 <body>
+
+
+<!-- PORTAL FLUTUANTE -->
+<div class="float-portal">
+  <svg viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="pg" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#39ff14" stop-opacity="0.9"/>
+        <stop offset="40%" stop-color="#00c853" stop-opacity="0.6"/>
+        <stop offset="70%" stop-color="#7c4dff" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#020818" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="60" cy="80" rx="45" ry="70" fill="url(#pg)" opacity="0.85">
+      <animate attributeName="rx" values="45;48;45" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="ry" values="70;74;70" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.85;1;0.85" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="60" cy="80" rx="38" ry="60" fill="none" stroke="#39ff14" stroke-width="2" opacity="0.7">
+      <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="60" cy="80" rx="30" ry="48" fill="none" stroke="#00e676" stroke-width="1" opacity="0.4">
+      <animate attributeName="rx" values="30;33;30" dur="2.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="60" cy="80" rx="20" ry="32" fill="#39ff14" opacity="0.15">
+      <animate attributeName="opacity" values="0.15;0.3;0.15" dur="1.5s" repeatCount="indefinite"/>
+    </ellipse>
+  </svg>
+</div>
+
+<!-- FRASE RICK -->
+<div id="rick-quote"></div>
 
 <div class="stars"></div>
 <div class="portal-bg"></div>
@@ -510,7 +606,7 @@
 
   <div class="hero-btns">
     <a href="#cardapio" class="btn btn-portal">Ver Cardápio</a>
-    <a href="https://www.instagram.com/adegalaprado2?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="btn btn-outline">
+    <a href="https://instagram.com/adegalaprado" target="_blank" rel="noopener" class="btn btn-outline">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       Instagram
     </a>
@@ -568,6 +664,13 @@
         <div class="item"><div class="item-name">Império Lata</div><div class="item-price">R$ 4,50</div></div>
         <div class="item"><div class="item-name">Império Ultra</div><div class="item-price">R$ 5,00</div></div>
         <div class="item"><div class="item-name">Eisenbahn Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Itaipava 269ml</div><div class="item-price">R$ 3,25</div></div>
+        <div class="item"><div class="item-name">Budweiser 269ml</div><div class="item-price">R$ 4,50</div></div>
+        <div class="item"><div class="item-name">Amstel 269ml</div><div class="item-price">R$ 4,00</div></div>
+        <div class="item"><div class="item-name">Império 269ml</div><div class="item-price">R$ 3,50</div></div>
+        <div class="item"><div class="item-name">Eisenbahn 269ml</div><div class="item-price">R$ 4,25</div></div>
+        <div class="item"><div class="item-name">Proibida</div><div class="item-price">R$ 3,25</div></div>
+        <div class="item"><div class="item-name">Lokal</div><div class="item-price">R$ 3,25</div></div>
         <div class="item highlight" style="grid-column:1/-1">
           <div class="item-name">Xeque Mate</div>
           <div class="item-price">R$ 10,00</div>
@@ -579,17 +682,10 @@
       <div class="subsection-title">Long Neck / Garrafa</div>
       <div class="items-grid">
         <div class="item"><div class="item-name">Skol 300ml<span class="item-note">Engradado R$ 3,50 · Caixa R$ 84</span></div><div class="item-price">R$ 4,00</div></div>
-        <div class="item"><div class="item-name">Itaipava 269ml</div><div class="item-price">R$ 3,25</div></div>
         <div class="item"><div class="item-name">Original 300ml</div><div class="item-price">R$ 4,75</div></div>
         <div class="item"><div class="item-name">Brahma Duplo 300ml</div><div class="item-price">R$ 4,75</div></div>
         <div class="item"><div class="item-name">Brahma Chop 300ml<span class="item-note">Engradado R$ 3,50</span></div><div class="item-price">R$ 4,00</div></div>
-        <div class="item"><div class="item-name">Budweiser 269ml</div><div class="item-price">R$ 4,50</div></div>
         <div class="item"><div class="item-name">Budweiser 300ml</div><div class="item-price">R$ 4,75</div></div>
-        <div class="item"><div class="item-name">Amstel 269ml</div><div class="item-price">R$ 4,00</div></div>
-        <div class="item"><div class="item-name">Império 269ml</div><div class="item-price">R$ 3,50</div></div>
-        <div class="item"><div class="item-name">Eisenbahn 269ml</div><div class="item-price">R$ 4,25</div></div>
-        <div class="item"><div class="item-name">Proibida</div><div class="item-price">R$ 3,25</div></div>
-        <div class="item"><div class="item-name">Lokal</div><div class="item-price">R$ 3,25</div></div>
       </div>
     </div>
   </section>
@@ -791,6 +887,51 @@
     });
   }, { threshold: 0.25 });
   sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
+
+  // ── FRASES DO RICK ──
+  const quotes = [
+    "Wubba lubba dub dub!",
+    "Não precisa de aprovação — beba e seja feliz.",
+    "A ciência do bom gosto existe e está aqui.",
+    "Em 99% dos universos, essa bebida é a melhor.",
+    "Sou o Rick mais inteligente... e mais sedento.",
+    "Existência é estranha. Aproveite a bebida.",
+    "Calculei: essa é a melhor adega da galáxia.",
+    "Morty, para tudo. Preciso de um drinque.",
+    "Portal aberto. Destino: Adega Lá Prado.",
+  ];
+  let qi = 0;
+  const qel = document.getElementById('rick-quote');
+  function showQuote() {
+    qel.textContent = quotes[qi % quotes.length];
+    qel.classList.add('show');
+    qi++;
+    setTimeout(() => qel.classList.remove('show'), 3500);
+    setTimeout(showQuote, 9000);
+  }
+  setTimeout(showQuote, 4000);
+
+  // ── PARTÍCULAS ──
+  const colors = ['#39ff14','#00e676','#7c4dff','#00e5ff','#ffffff'];
+  function spawnParticle() {
+    const p = document.createElement('div');
+    p.className = 'portal-particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = [
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'left:' + (Math.random() * 100) + 'vw',
+      'bottom:-10px',
+      'background:' + colors[Math.floor(Math.random()*colors.length)],
+      'animation-duration:' + (Math.random() * 8 + 6) + 's',
+      'animation-delay:' + (Math.random() * 3) + 's',
+      'box-shadow: 0 0 ' + (size*2) + 'px currentColor',
+    ].join(';');
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 12000);
+  }
+  setInterval(spawnParticle, 400);
+
 </script>
 </body>
 </html>
