@@ -617,6 +617,7 @@
 <nav class="nav-sticky">
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="goTo('cervejas',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><path fill="#f4aa41" d="M48 14h8v18h-8z"/><path fill="#fff" d="M16 28h40v28a8 8 0 01-8 8H24a8 8 0 01-8-8V28z"/><path fill="#d1d3d4" d="M14 24h44a2 2 0 012 2v4H12v-4a2 2 0 012-2z"/><path fill="#92d3f5" d="M20 34h32v16H20z" opacity=".4"/></svg></span> Cervejas</button>
+    <button class="nav-tab" onclick="goTo('doses',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><path fill="#b0c4de" d="M28 18h16l-3 38H31z"/><path fill="#d4e8ff" d="M26 14h20a2 2 0 010 4H26a2 2 0 010-4z"/><path fill="#ffd700" d="M31 32h10v5H31z" opacity=".55"/><path fill="#39ff14" d="M33 14v4" stroke="#39ff14" stroke-width="2"/></svg></span> Doses</button>
     <button class="nav-tab" onclick="goTo('gin',this)">🍸 Gin</button>
     <button class="nav-tab" onclick="goTo('whisky',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><path fill="#a16334" d="M20 22h32l-4 32H24z"/><path fill="#d2a679" d="M16 18h40a2 2 0 010 4H16a2 2 0 010-4z"/><path fill="#f4aa41" d="M30 10h12l2 8H28z"/><circle fill="#92d3f5" cx="36" cy="36" r="6" opacity=".5"/></svg></span> Whisky</button>
     <button class="nav-tab" onclick="goTo('vodka',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><path fill="#92d3f5" d="M20 20h32l-6 36H26z"/><path fill="#fff" d="M18 16h36a2 2 0 010 4H18a2 2 0 010-4z"/><path fill="#f4aa41" d="M36 20v16"/><path fill="#5c9e31" d="M36 36l-8-10h16z" opacity=".8"/><circle fill="#ea5a47" cx="44" cy="24" r="4"/></svg></span> Vodka</button>
@@ -633,6 +634,7 @@
   <path d="M22 38 Q28 34 36 36 Q44 34 50 38 Q44 42 36 40 Q28 42 22 38Z" fill="#3a2070" opacity="0.4"/>
   <circle cx="27" cy="35" r="2" fill="#fff" opacity="0.2"/>
 </svg></span> Açaí</button>
+    <button class="nav-tab" onclick="goTo('refris',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><rect fill="#ea5a47" x="22" y="10" width="28" height="52" rx="6"/><rect fill="#ff8a65" x="26" y="14" width="8" height="4" rx="2"/><rect fill="#fff" x="22" y="28" width="28" height="10" opacity=".25"/><circle fill="#fff" cx="44" cy="50" r="4" opacity=".4"/></svg></span> Refris</button>
     <button class="nav-tab" onclick="goTo('petiscos',this)"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><rect fill="#a16334" x="12" y="28" width="48" height="32" rx="4"/><rect fill="#4a2800" x="12" y="28" width="48" height="8" rx="2"/><rect fill="#a16334" x="20" y="16" width="32" height="16" rx="3"/><path fill="#ffd700" d="M24 32h6v20h-6zm9 0h6v20h-6zm9 0h6v20h-6z" opacity=".3"/></svg></span> Petiscos</button>
   </div>
 </nav>
@@ -687,6 +689,46 @@
         <div class="item"><div class="item-name">Brahma Chop 300ml<span class="item-note">Engradado R$ 3,50</span></div><div class="item-price">R$ 4,00</div></div>
         <div class="item"><div class="item-name">Budweiser 300ml</div><div class="item-price">R$ 4,75</div></div>
       </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
+  <!-- DOSES -->
+  <section class="menu-section anchor" id="doses">
+    <div class="section-header">
+      <span class="section-icon"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><path fill="#b0c4de" d="M28 18h16l-3 38H31z"/><path fill="#d4e8ff" d="M26 14h20a2 2 0 010 4H26a2 2 0 010-4z"/><path fill="#ffd700" d="M31 32h10v5H31z" opacity=".55"/></svg></span></span>
+      <h2 class="section-title">Dose Unitária</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item"><div class="item-name">51<span class="item-note">c/ limão R$ 3,00</span></div><div class="item-price">R$ 2,50</div></div>
+      <div class="item"><div class="item-name">Amarela</div><div class="item-price">R$ 2,00</div></div>
+      <div class="item"><div class="item-name">Askov</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Ballantines</div><div class="item-price">R$ 10,00</div></div>
+      <div class="item"><div class="item-name">Cambuci</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Canelinha</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Corote</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Dreher</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Gabriela</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Gin Opera</div><div class="item-price">R$ 5,00</div></div>
+      <div class="item"><div class="item-name">Gin Rock's</div><div class="item-price">R$ 8,00</div></div>
+      <div class="item"><div class="item-name">Intencion</div><div class="item-price">R$ 5,00</div></div>
+      <div class="item"><div class="item-name">Jack Daniel's Sabores</div><div class="item-price">R$ 17,00</div></div>
+      <div class="item"><div class="item-name">Jack Daniel's Tradicional</div><div class="item-price">R$ 15,00</div></div>
+      <div class="item"><div class="item-name">Master Gold</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Passport</div><div class="item-price">R$ 8,00</div></div>
+      <div class="item"><div class="item-name">Pitu</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Pitu de Sabores</div><div class="item-price">R$ 3,50</div></div>
+      <div class="item"><div class="item-name">Presidente</div><div class="item-price">R$ 3,50</div></div>
+      <div class="item"><div class="item-name">Presidente c/ Mel</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">QN</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">São Francisco</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">Smirnoff</div><div class="item-price">R$ 5,00</div></div>
+      <div class="item"><div class="item-name">Tequila</div><div class="item-price">R$ 4,50</div></div>
+      <div class="item"><div class="item-name">Velho Barreiro</div><div class="item-price">R$ 3,00</div></div>
+      <div class="item"><div class="item-name">Vodka</div><div class="item-price">R$ 4,00</div></div>
+      <div class="item"><div class="item-name">White Horse</div><div class="item-price">R$ 10,00</div></div>
     </div>
   </section>
 
@@ -832,6 +874,69 @@
 
   <div class="portal-divider"><span></span></div>
 
+  <!-- REFRIS -->
+  <section class="menu-section anchor" id="refris">
+    <div class="section-header">
+      <span class="section-icon"><span style="display:inline-flex;align-items:center;vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" width="22" height="22"><rect fill="#ea5a47" x="22" y="10" width="28" height="52" rx="6"/><rect fill="#ff8a65" x="26" y="14" width="8" height="4" rx="2"/><rect fill="#fff" x="22" y="28" width="28" height="10" opacity=".25"/><circle fill="#fff" cx="44" cy="50" r="4" opacity=".4"/></svg></span></span>
+      <h2 class="section-title">Refris · Energéticos · Águas</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Águas</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Água 510ml</div><div class="item-price">R$ 3,00</div></div>
+        <div class="item"><div class="item-name">Água c/ Gás 510ml</div><div class="item-price">R$ 3,00</div></div>
+        <div class="item"><div class="item-name">Água 1L</div><div class="item-price">R$ 4,50</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Refrigerantes</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Antártica 1L</div><div class="item-price">R$ 6,50</div></div>
+        <div class="item"><div class="item-name">Antártica 2L / 2,5L</div><div class="item-price">R$ 12,00 / R$ 13,00</div></div>
+        <div class="item"><div class="item-name">Caçulinha</div><div class="item-price">R$ 3,00</div></div>
+        <div class="item"><div class="item-name">Coca-Cola 2L / 2,5L</div><div class="item-price">R$ 13,50 / R$ 15,00</div></div>
+        <div class="item"><div class="item-name">Coca-Cola 2L Retornável</div><div class="item-price">R$ 9,99</div></div>
+        <div class="item"><div class="item-name">Coca-Cola Zero 2L / 2,5L</div><div class="item-price">R$ 13,50 / R$ 15,00</div></div>
+        <div class="item"><div class="item-name">Fanta Laranja 2L</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item"><div class="item-name">Fanta Uva 2L</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item"><div class="item-name">Jaboti 2L</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Pepsi 2L / 2,5L</div><div class="item-price">R$ 12,00 / R$ 13,09</div></div>
+        <div class="item"><div class="item-name">Refrigerante Lata</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Sprite 2L</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item"><div class="item-name">Sprite Lemon 510ml</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Sukita 2L</div><div class="item-price">R$ 8,50</div></div>
+        <div class="item"><div class="item-name">Tubaína KS</div><div class="item-price">R$ 5,25</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Sucos</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Suco Caixa 1L</div><div class="item-price">R$ 7,25</div></div>
+        <div class="item"><div class="item-name">Suco Dell Vale</div><div class="item-price">R$ 5,50</div></div>
+        <div class="item"><div class="item-name">Suco Gutico</div><div class="item-price">R$ 4,00</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Energéticos &amp; Isotônicos</div>
+      <div class="items-grid">
+        <div class="item"><div class="item-name">Bally 2L</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item"><div class="item-name">Bally Lata</div><div class="item-price">R$ 7,99</div></div>
+        <div class="item"><div class="item-name">Energético 2L</div><div class="item-price">R$ 8,00</div></div>
+        <div class="item"><div class="item-name">Gatorade</div><div class="item-price">R$ 7,00</div></div>
+        <div class="item highlight"><div class="item-name">Monster</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item highlight"><div class="item-name">Red Bull</div><div class="item-price">R$ 12,00</div></div>
+        <div class="item"><div class="item-name">TTN Lata</div><div class="item-price">R$ 7,99</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="portal-divider"><span></span></div>
+
   <!-- PETISCOS -->
   <section class="menu-section anchor" id="petiscos">
     <div class="section-header">
@@ -876,7 +981,7 @@
     el.classList.add('active');
   }
 
-  const sections = ['cervejas','gin','whisky','vodka','especiais','caipirinhas','acai','petiscos'];
+  const sections = ['cervejas','doses','gin','whisky','vodka','especiais','caipirinhas','acai','refris','petiscos'];
   const tabs = document.querySelectorAll('.nav-tab');
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
